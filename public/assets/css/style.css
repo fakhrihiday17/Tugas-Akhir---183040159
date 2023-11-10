@@ -1,0 +1,73 @@
+.sampul {
+    background-image: url(/gambar/bg.svg);
+  }
+  
+  #book-carousel .carousel-inner {
+    background-color: orange; /* Ganti latar belakang menjadi kuning */
+}
+
+.img-square {
+    width: 350px; /* Atur ukuran gambar persegi sesuai keinginan Anda */
+    height: 350px; /* Atur ukuran gambar persegi sesuai keinginan Anda */
+    margin-top: 2px; /* Menambahkan jarak antara gambar dan judul */
+    margin-bottom: 3px; /* Menambahkan jarak antara gambar dan sinopsis */
+}
+
+.title {
+    color: black; /* Warna judul */
+}
+
+.sinopsis-text {
+    color: white; /* Warna sinopsis */
+    padding: 20px; /* Menambahkan jarak antara teks dan tepi gambar */
+    background: rgba(0, 0, 0, 0.5); /* Latar belakang teks dengan transparansi (hitam dengan transparansi) */
+    max-width: calc(100% - 220px); /* Maksimum lebar teks untuk menjaga teks tetap dalam satu baris */
+    display: flex; /* Menyusun gambar dan teks dalam satu baris */
+    align-items: center; /* Menyusun vertikal tengah */
+}
+
+.favorited-novels-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: whitesmoke;
+}
+
+.favorited-novel-item {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.favorited-novel-image {
+    max-width: 200px;
+    max-height: 200px;
+    margin-right: 20px;
+}
+
+.favorited-novel-details {
+    flex: 1;
+}
+
+.favorited-novel-title {
+    font-size: 20px;
+    margin: 0;
+}
+
+.favorited-novel-meta {
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+}
+
+#bookmarked-content::selection {
+    background: yellow; /* Ganti warna latar belakang sesuai kebutuhan */
+    color: black; /* Ganti warna teks sesuai kebutuhan */
+}
+
+.img-awal {
+    width: 200px;
+    height: 200px;
+}
