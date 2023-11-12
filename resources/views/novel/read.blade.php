@@ -4,6 +4,9 @@
 @section('isihalamanawal')
 
 <div class="container mt-5 bg-light">
+    <a href="{{ route('novel.show', ['novelId' => $novel->id]) }}" class="btn btn-secondary mt-2" style="text-decoration: none;">
+        Kembali
+    </a>
     <div class="d-flex justify-content-center align-items-center">
         <a href="{{ route('novel.chapterEdit', ['novelId' => $chapter->novel_id, 'chapterNumber' => $chapter->chapter_number]) }}" class="btn btn-primary btn-sm mb-2 mt-2">Ubah Judul Bab</a>
         <a href="{{ route('novel.pageEdit', ['chapterId' => $page->chapter_id, 'pageNumber' => $page->page_number]) }}" class="btn btn-primary btn-sm mb-2 mx-3 mt-2">Ubah Halaman {{ $page->page_number }}</a>
@@ -13,11 +16,11 @@
     <h2 class="text-center">Bab {{ $chapter->chapter_number }}</h2>
 
     <div class="d-flex justify-content-center align-items-center" style="min-height: 400px;">
-        <div id="bookmarked-content" contentEditable="true" class="mb-2">
+        <div id="bookmarked-content" contentEditable="false" class="mb-2 readonly">
             {!! $page->content !!}
         </div>
     </div>
-    <h2 class="text-center">Halaman {!! $page->page_number !!}</h2>
+    <h4 class="text-center">Halaman {!! $page->page_number !!}</h4>
     <button id="bookmark-button" class="btn btn-warning" style="display: none;">Bookmark</button>
     <button id="remove-bookmarks" class="btn btn-danger">Hapus Bookmark</button>
 
@@ -46,6 +49,28 @@
     const bookmarkButton = document.getElementById('bookmark-button');
     const pageId = '{{ $page->id }}';
     const bookmarkedText = '{{ $page->bookmark_text }}';
+
+    document.getElementById('bookmarked-content').addEventListener('mouseup', function(event) {
+        var selectedText = window.getSelection().toString();
+
+        if (selectedText.trim() !== '') {
+            var span = document.createElement('span');
+            span.textContent = selectedText;
+            span.style.backgroundColor = 'yellow';
+            span.style.cursor = 'pointer';
+
+            // Tambahkan ID atau kelas tertentu untuk menangkap klik
+            span.addEventListener('click', function() {
+                // Lakukan sesuatu ketika teks diklik
+                alert('Teks diklik: ' + selectedText);
+            });
+
+            // Ganti teks yang dipilih dengan elemen span yang diatur
+            var range = window.getSelection().getRangeAt(0);
+            range.deleteContents();
+            range.insertNode(span);
+        }
+    });
 
     // Periksa apakah ada teks bookmark
     $(document).ready(function() {

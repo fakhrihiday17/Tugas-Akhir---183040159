@@ -37,10 +37,8 @@
             <label for="title">Title</label>
             <input type="text" class="form-control" id="title" name="title" value="{{ $chapter->title }}" required>
         </div>
-
-        <!-- Tambahkan validasi dan field lain sesuai kebutuhan -->
-
-        <button type="submit" class="btn btn-primary">Ubah Bab</button>
+        <a href="javascript:history.back()" class="btn btn-secondary mb-3">Back</a>
+        <button type="submit" class="btn btn-primary mb-3">Ubah Bab</button>
     </form>
 
 

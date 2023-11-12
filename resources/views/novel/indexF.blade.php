@@ -37,7 +37,7 @@
         <div class="row">
             @foreach($novels as $novel)
             <div class="col-md-3">
-                <div class="card mb-3" style="max-width: 18rem;">
+                <div class="card mb-3 kartu">
                     <img src="{{ asset('gambar/' . $novel->cover_image) }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{ $novel->title }}</h5>

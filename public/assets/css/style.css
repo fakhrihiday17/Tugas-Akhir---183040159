@@ -67,6 +67,11 @@
     color: black; /* Ganti warna teks sesuai kebutuhan */
 }
 
+#bookmarked-content span {
+    background-color: yellow; /* Warna latar belakang ketika dipilih */
+    cursor: pointer; /* Menunjukkan kursor dapat diklik */
+}
+
 .img-awal {
     width: 200px;
     height: 200px;
@@ -74,4 +79,15 @@
 
 #bookmarked-content {
     line-height: 2.5;
+}
+
+.kartu {
+    max-width: 28rem; 
+    max-height: 40rem;
+}
+
+.kartu img {
+    width: 100%; 
+    height: 400px; 
+    object-fit: cover;
 }

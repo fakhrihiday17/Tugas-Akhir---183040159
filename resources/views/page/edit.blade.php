@@ -35,10 +35,10 @@
 
             <div class="form-group">
                 <label for="content">Content</label>
-                <textarea class="form-control" id="content" name="content" rows="10">{{ $page->content }}</textarea>
+                <textarea class="form-control" id="content" name="content" rows="20">{{ $page->content }}</textarea>
             </div>
-            <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
-            <button type="submit" class="btn btn-primary">Update Page</button>
+            <a href="javascript:history.back()" class="btn btn-secondary mb-3">Back</a>
+            <button type="submit" class="btn btn-primary mb-3">Update Page</button>
         </form>
     </div>
 
