@@ -1,76 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('indexwb')
+@section('title', 'admin')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Aplikasi Buku Novel</title>
+@section('isihalamanawal')
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/style.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets') }}/css/bootstrap.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5/10/0/css/all.css">
-    <script type="text/javascript" src="{{ asset('assets') }}/js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="{{ asset('assets') }}/js/bootstrap.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>Document</title>
-</head>
-
-<body style="background-image: url(/gambar/bg.svg);">
-    <div class="navbar navbar-expand-lg navbar-light bg-light">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a href="/" class="nav-link">Home</a>
-            </li>
-
-            <li class="nav-item">
-                <a href="/novel" class="nav-link">Data Buku</a>
-            </li>
-
-            <li class="nav-item">
-                <a href="/user" class="nav-link">Data User</a>
-            </li>
-
-            <li class="nav-item">
-                <a href="/admin" class="nav-link">Data Admin</a>
-            </li>
-
-            <li class="nav-item">
-                <a href="/logout" class="nav-link">Logout</a>
-            </li>
-        </ul>
+<div class="container mt-5 bg-light">
+    <div class="d-flex justify-content-center align-items-center">
+        <a href="{{ route('novel.chapterEdit', ['novelId' => $chapter->novel_id, 'chapterNumber' => $chapter->chapter_number]) }}" class="btn btn-primary btn-sm mb-2 mt-2">Ubah Judul Bab</a>
+        <a href="{{ route('novel.pageEdit', ['chapterId' => $page->chapter_id, 'pageNumber' => $page->page_number]) }}" class="btn btn-primary btn-sm mb-2 mx-3 mt-2">Ubah Halaman {{ $page->page_number }}</a>
     </div>
-    <div class="container mt-5 bg-light">
-        <h1>{{ $novel->title }}</h1>
-        <h2>Chapter {{ $chapter->chapter_number }}</h2>
 
-        <div class="d-flex justify-content-center align-items-center" style="min-height: 400px;">
-            <div id="bookmarked-content" contentEditable="true" class="mb-2">
-                {{ $page->content }}
-            </div>
+    <h1 class="text-center">{{ $novel->title }}</h1>
+    <h2 class="text-center">Bab {{ $chapter->chapter_number }}</h2>
+
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 400px;">
+        <div id="bookmarked-content" contentEditable="true" class="mb-2">
+            {!! $page->content !!}
         </div>
-        <button id="bookmark-button" class="btn btn-warning" style="display: none;">Bookmark</button>
-        <button id="remove-bookmarks" class="btn btn-danger">Hapus Bookmark</button>
+    </div>
+    <h2 class="text-center">Halaman {!! $page->page_number !!}</h2>
+    <button id="bookmark-button" class="btn btn-warning" style="display: none;">Bookmark</button>
+    <button id="remove-bookmarks" class="btn btn-danger">Hapus Bookmark</button>
 
-        <div class="pagination mt-3">
-            <div class="row">
-                <div class="col-md-6 text-md-end">
-                    @if ($previousPage)
-                    <a href="{{ route('novel.read', ['novelId' => $novel->id, 'chapterNumber' => $chapter->chapter_number, 'pageNumber' => $previousPage->page_number]) }}" class="btn btn-primary mb-2">Previous Page</a>
-                    @elseif ($previousChapter && $lastPageOfPreviousChapter)
-                    <a href="{{ route('novel.read', ['novelId' => $novel->id, 'chapterNumber' => $previousChapter->chapter_number, 'pageNumber' => $lastPageOfPreviousChapter->page_number]) }}" class="btn btn-primary">Previous Chapter</a>
-                    @endif
-                </div>
-                <div class="col-md-6 text-md-end">
-                    @if (!$isLastPage)
-                    <a href="{{ route('novel.read', ['novelId' => $novel->id, 'chapterNumber' => $chapter->chapter_number, 'pageNumber' => $nextPage->page_number]) }}" class="btn btn-primary">Next Page</a>
-                    @elseif ($nextChapter)
-                    <a href="{{ route('novel.read', ['novelId' => $novel->id, 'chapterNumber' => $nextChapter->chapter_number, 'pageNumber' => 1]) }}" class="btn btn-primary">Next Chapter</a>
-                    @endif
-                </div>
+    <div class="pagination mt-3">
+        <div class="row">
+            <div class="col-md-6 text-md-end">
+                @if ($previousPage)
+                <a href="{{ route('novel.read', ['novelId' => $novel->id, 'chapterNumber' => $chapter->chapter_number, 'pageNumber' => $previousPage->page_number]) }}" class="btn btn-primary mb-2">Previous Page</a>
+                @elseif ($previousChapter && $lastPageOfPreviousChapter)
+                <a href="{{ route('novel.read', ['novelId' => $novel->id, 'chapterNumber' => $previousChapter->chapter_number, 'pageNumber' => $lastPageOfPreviousChapter->page_number]) }}" class="btn btn-primary">Previous Chapter</a>
+                @endif
+            </div>
+            <div class="col-md-6 text-md-end">
+                @if (!$isLastPage)
+                <a href="{{ route('novel.read', ['novelId' => $novel->id, 'chapterNumber' => $chapter->chapter_number, 'pageNumber' => $nextPage->page_number]) }}" class="btn btn-primary mb-3">Next Page</a>
+                @elseif ($nextChapter)
+                <a href="{{ route('novel.read', ['novelId' => $novel->id, 'chapterNumber' => $nextChapter->chapter_number, 'pageNumber' => 1]) }}" class="btn btn-primary mb-3">Next Chapter</a>
+                @endif
             </div>
         </div>
     </div>
+</div>
 </body>
 <script>
     const bookmarkedContent = document.getElementById('bookmarked-content');
@@ -175,3 +144,5 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </html>
+
+@endsection

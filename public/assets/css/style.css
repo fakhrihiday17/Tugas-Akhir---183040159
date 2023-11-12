@@ -71,3 +71,7 @@
     width: 200px;
     height: 200px;
 }
+
+#bookmarked-content {
+    line-height: 2.5;
+}

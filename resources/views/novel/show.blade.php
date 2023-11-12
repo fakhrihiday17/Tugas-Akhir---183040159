@@ -52,35 +52,6 @@
                     @endforeach
                 </div>
 
-                <div class="mt-1 mb-2">
-
-                    <div class="container">
-                        <h3>Ubah Data Novel, Judul Bab, dan, Halaman</h3>
-                        <div class="row">
-                            <a href="{{ route('novel.edit', ['novelId' => $novel->id]) }}">
-                                <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" data-target="">
-                                    Ubah Data Novel
-                                </button>
-                            </a>
-                            @foreach ($chapters as $chapter)
-                            <div class="col-md-6 mb-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Chapter {{ $chapter->chapter_number }}: {{ $chapter->title }}</h5>
-                                        <a href="{{ route('novel.chapterEdit', ['novelId' => $chapter->novel_id, 'chapterNumber' => $chapter->chapter_number]) }}" class="btn btn-primary btn-sm mb-2">Ubah Judul Bab</a>
-
-                                        <!-- Tombol Edit Page -->
-                                        @foreach ($chapter->pages as $page)
-                                        <a href="{{ route('novel.pageEdit', ['chapterId' => $page->chapter_id, 'pageNumber' => $page->page_number]) }}" class="btn btn-primary btn-sm mb-2">Ubah Halaman {{ $page->page_number }}</a>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-
-                </div>
                 <div class="container">
                     <div class="col-md-9">
                         <a href="{{ route('home') }}" class="btn btn-secondary btn-lg">Kembali</a>

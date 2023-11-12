@@ -33,9 +33,6 @@
                         <a href="/" class="nav-link">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ route('novel.favorit') }}" class="nav-link">Daftar Buku Favorit</a>
-                    </li>
-                    <li class="nav-item">
                         <a href="/novel" class="nav-link">Data Buku</a>
                     </li>
                     <li class="nav-item">
@@ -47,16 +44,17 @@
                 </ul>
                 <form class="d-flex mx-2" role="search">
                     <input class="form-control me-2 mx-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <button class="btn btn-success" type="submit">Search</button>
                 </form>
                 @if (Auth::check())
+                <a href="{{ route('novel.favorit') }}" class="btn btn-outline-warning">Daftar Buku Favorit</a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="btn btn-dark">Logout</button>
+                    <button type="submit" class="btn btn-outline-danger mx-2">Logout</button>
                 </form>
                 @else
-                <a href="{{ route('register') }}" class="btn btn-dark">Register</a>
-                <a href="{{ route('login') }}" class="btn btn-dark">Login</a>
+                <a href="{{ route('register') }}" class="btn btn-outline-primary">Register</a>
+                <a href="{{ route('login') }}" class="btn btn btn-outline-success mx-2">Login</a>
                 @endif
             </div>
         </div>

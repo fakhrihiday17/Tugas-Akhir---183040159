@@ -88,7 +88,7 @@ class NovelController extends Controller
 
         Page::create($data);
 
-        return redirect()->route('home')->with('success', 'Chapter added successfully.');
+        return redirect()->route('novel.index')->with('success', 'Chapter added successfully.');
     }
 
     public function show($novelId)
