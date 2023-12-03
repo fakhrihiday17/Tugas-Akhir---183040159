@@ -2,7 +2,7 @@
 @section('title', 'admin')
 
 @section('isihalamanawal')
-<div class="container">
+<div class="container mt-2">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -19,7 +19,7 @@
                         @csrf
 
                         <div class="form-group">
-                            <label for="email_user">{{ __('email_user') }}</label>
+                            <label for="email_user">{{ __('Email User') }}</label>
                             <input id="email_user" type="email_user" class="form-control @error('email_user') is-invalid @enderror" name="email_user" value="{{ old('email_user') }}" required autofocus>
                             @error('email_user')
                             <span class="invalid-feedback" role="alert">

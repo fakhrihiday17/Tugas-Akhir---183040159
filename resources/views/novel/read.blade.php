@@ -22,7 +22,7 @@
     </div>
     <h4 class="text-center">Halaman {!! $page->page_number !!}</h4>
     <button id="bookmark-button" class="btn btn-warning" style="display: none;">Bookmark</button>
-    <button id="remove-bookmarks" class="btn btn-danger">Hapus Bookmark</button>
+    <!-- <button id="remove-bookmarks" class="btn btn-danger">Hapus Bookmark</button> -->
 
     <div class="pagination mt-3">
         <div class="row">
@@ -50,11 +50,11 @@
     const pageId = '{{ $page->id }}';
     const bookmarkedText = '{{ $page->bookmark_text }}';
 
-    document.getElementById('bookmarked-content').addEventListener('mouseup', function(event) {
-        var selectedText = window.getSelection().toString();
+    bookmarkedContent.addEventListener('mouseup', function(event) {
+        const selectedText = window.getSelection().toString();
 
         if (selectedText.trim() !== '') {
-            var span = document.createElement('span');
+            const span = document.createElement('span');
             span.textContent = selectedText;
             span.style.backgroundColor = 'yellow';
             span.style.cursor = 'pointer';
@@ -66,20 +66,19 @@
             });
 
             // Ganti teks yang dipilih dengan elemen span yang diatur
-            var range = window.getSelection().getRangeAt(0);
+            const range = window.getSelection().getRangeAt(0);
             range.deleteContents();
             range.insertNode(span);
         }
     });
 
     // Periksa apakah ada teks bookmark
-    $(document).ready(function() {
+    document.addEventListener('DOMContentLoaded', function() {
         // Ambil teks bookmark dari PHP
         const bookmarkedText = '{{ $page->bookmark_text }}';
 
         if (bookmarkedText) {
             // Temukan semua kalimat yang di-bookmark pada halaman
-            const bookmarkedContent = document.getElementById('bookmarked-content');
             const content = bookmarkedContent.innerHTML;
 
             // Temukan dan tandai setiap kemunculan teks bookmark
@@ -100,9 +99,6 @@
             bookmarkButton.style.display = 'inline-block';
             bookmarkButton.style.top = `${event.clientY}px`;
             bookmarkButton.style.left = `${event.clientX}px`;
-
-            // Tandai teks yang dipilih dengan warna kuning
-            document.execCommand('hiliteColor', false, 'yellow');
         }
     });
 
@@ -124,13 +120,12 @@
             .then(response => response.json())
             .then(data => {
                 console.log(data.message);
+                // Sembunyikan tombol bookmark setelah berhasil bookmark
+                bookmarkButton.style.display = 'none';
             })
             .catch(error => {
                 console.error('Terjadi kesalahan:', error);
             });
-
-        // Sembunyikan tombol bookmark
-        bookmarkButton.style.display = 'none';
     });
 
     const removeBookmarksButton = document.getElementById('remove-bookmarks');

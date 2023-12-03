@@ -40,7 +40,7 @@
             <label>Sinopsis:</label>
             <textarea id="sinopsis" name="sinopsis" rows="5" class="form-control"></textarea>
         </div>
-        <button type="submit" class="btn btn-success">Tambah Novel</button>
+        <button type="submit" class="btn btn-success mt-3 mb-3">Tambah Novel</button>
     </form>
 </body>
 

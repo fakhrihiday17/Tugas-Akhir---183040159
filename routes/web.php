@@ -59,3 +59,5 @@ Route::post('/register', 'UserController@store');
 Route::get('/login', 'UserController@showLoginForm')->name('login');
 Route::post('/login', 'UserController@login');
 Route::post('/logout', 'UserController@logout')->name('logout');
+
+Route::post('/upload-image', [NovelController::class, 'uploadImage']);

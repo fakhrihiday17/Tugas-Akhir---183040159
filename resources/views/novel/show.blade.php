@@ -20,7 +20,7 @@
         {{ session('success') }}
     </div>
     @endif
-    <div class="container mt-5">
+    <div class="container mt-5 mb-3">
         <div class="row">
             <div class="col-md-4">
                 <img src="{{ asset('gambar/' . $novel->cover_image) }}" alt="Cover Image" class="img-fluid">
@@ -52,7 +52,8 @@
                     @endforeach
                 </div>
 
-                <div class="container">
+                <div class="container mb-3">
+                    <a href="{{ route('novel.edit', ['novelId' => $novel->id]) }}" class="btn btn-primary mb-3">Ubah Data Novel</a>
                     <div class="col-md-9">
                         <a href="{{ route('home') }}" class="btn btn-secondary btn-lg">Kembali</a>
                         <a href="{{ route('novel.read', ['novelId' => $novel->id, 'chapterNumber' => 1, 'pageNumber' => 1])}}" class="btn btn-primary btn-lg">Baca</a>

@@ -34,7 +34,7 @@
         @method('PUT')
 
         <div class="form-group">
-            <label for="title">Title</label>
+            <label for="title">Judul Bab</label>
             <input type="text" class="form-control" id="title" name="title" value="{{ $chapter->title }}" required>
         </div>
         <a href="javascript:history.back()" class="btn btn-secondary mb-3">Back</a>

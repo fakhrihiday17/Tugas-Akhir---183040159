@@ -16,7 +16,7 @@
         </div>
 
         <div class="form-group">
-            <label for="title">Title</label>
+            <label for="title">Judul</label>
             <input type="text" name="title" class="form-control" value="{{ $novel->title }}" required>
         </div>
 
@@ -26,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            <label for="author">Author</label>
+            <label for="author">Penulis</label>
             <input type="text" name="author" class="form-control" value="{{ $novel->author }}" required>
         </div>
 
@@ -37,7 +37,7 @@
 
         <!-- Tambahkan elemen input untuk cover image jika diperlukan -->
 
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-primary mb-3">Update</button>
     </form>
 </div>
 @endsection

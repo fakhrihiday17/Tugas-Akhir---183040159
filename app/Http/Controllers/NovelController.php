@@ -337,4 +337,20 @@ class NovelController extends Controller
             return response()->json(['message' => 'Halaman tidak ditemukan.'], 404);
         }
     }
+
+    public function uploadImage(Request $request)
+    {
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $image = $request->file('image');
+        $imageName = time() . '.' . $image->extension();
+        $image->move(public_path('gambar'), $imageName);
+
+        // Mengganti `../gambar/` dengan `/gambar/` pada URL gambar
+        $imageUrl = '/gambar/' . $imageName;
+
+        return response()->json(['location' => url($imageUrl)]);
+    }
 }

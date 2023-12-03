@@ -17,12 +17,14 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
 
 
     <title>Document</title>
 </head>
 
-<body style="background-image: url(/gambar/bg.svg);">
+<body>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
