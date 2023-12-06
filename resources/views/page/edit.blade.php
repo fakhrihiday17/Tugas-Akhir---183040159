@@ -30,8 +30,7 @@
 
     <div class="container">
         <h1>Ubah Halaman</h1>
-        <form method="POST" action="{{ route('novel.pageUpdate', ['novelId' => $page->novel_id, 'chapterNumber' => $page->chapter_number, 'pageNumber' => $page->page_number]) }}" enctype="multipart/form-data">
-
+        <form method="POST" action="{{ route('novel.pageUpdate', ['chapterId' => $page->chapter_id, 'pageNumber' => $page->page_number]) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -43,6 +42,7 @@
             <a href="javascript:history.back()" class="btn btn-secondary mb-3">Kembali</a>
             <button type="submit" class="btn btn-primary mb-3">Ubah Halaman</button>
         </form>
+
 
     </div>
 

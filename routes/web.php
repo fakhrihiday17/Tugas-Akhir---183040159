@@ -43,6 +43,7 @@ Route::get('/novel/page/edit/{chapterId}/{pageNumber}', [NovelController::class,
 Route::put('/novel/page/{chapterId}/{pageNumber}', [NovelController::class, 'pageUpdate'])
     ->name('novel.pageUpdate');
 
+
 Route::delete('novel/{novelId}', 'NovelController@destroy')->name('novel.destroy');
 
 Route::get('/novel/read/{novelId}/{chapterNumber}/{pageNumber}', [NovelController::class, 'read'])->name('novel.read');

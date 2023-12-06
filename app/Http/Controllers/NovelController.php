@@ -169,23 +169,28 @@ class NovelController extends Controller
         return view('page.edit', compact('page'));
     }
 
-    public function pageUpdate(Request $request, $novelId, $chapterNumber, $pageNumber)
+    public function pageUpdate(Request $request, $chapterId, $pageNumber)
     {
-        $page = Page::where('novel_id', $novelId)
-            ->where('chapter_number', $chapterNumber)
+
+        $page = Page::where('chapter_id', $chapterId)
             ->where('page_number', $pageNumber)
             ->firstOrFail();
 
         $data = $request->validate([
             'content' => 'required',
-            // Validasi lainnya sesuai kebutuhan
         ]);
 
-        // Update informasi page
         $page->update($data);
+        $novelId = $page->chapter->novel->id;
+        $chapterNumber = $page->chapter->chapter_number;
+        $pageNumber = $page->page_number;
 
-        return redirect()->route('novel.show', ['novelId' => $novelId, 'chapterNumber' => $chapterNumber, 'pageNumber' => $pageNumber])
-            ->with('success', 'Page updated successfully.');
+
+        return redirect()->route('novel.read', [
+            'novelId' => $novelId,
+            'chapterNumber' => $chapterNumber,
+            'pageNumber' => $pageNumber,
+        ])->with('success', 'Page updated successfully.');
     }
 
     public function destroy($novelId)
