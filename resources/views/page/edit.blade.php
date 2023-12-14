@@ -42,15 +42,13 @@
             <a href="javascript:history.back()" class="btn btn-secondary mb-3">Kembali</a>
             <button type="submit" class="btn btn-primary mb-3">Ubah Halaman</button>
         </form>
-
-
     </div>
 
 </body>
 <script>
     tinymce.init({
         selector: '#content',
-        height: 300,
+        height: 600,
         plugins: [
             'advlist autolink lists link image charmap print preview anchor',
             'searchreplace visualblocks code fullscreen',

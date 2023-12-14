@@ -62,6 +62,11 @@
     margin: 0;
 }
 
+#bookmarked-content {
+    line-height: 2.5;
+    font-size: 16px;
+}
+
 #bookmarked-content::selection {
     background: yellow; /* Ganti warna latar belakang sesuai kebutuhan */
     color: black; /* Ganti warna teks sesuai kebutuhan */
@@ -77,10 +82,6 @@
     height: 200px;
 }
 
-#bookmarked-content {
-    line-height: 2.5;
-}
-
 .kartu {
     max-width: 28rem; 
     max-height: 40rem;
@@ -91,3 +92,34 @@
     height: 400px; 
     object-fit: cover;
 }
+
+.logo-a {
+    font-family: 'Arial', sans-serif; /* Ganti font sesuai kebutuhan */
+    font-size: 20px; /* Sesuaikan ukuran huruf */
+    color: black; /* Warna teks */
+  }
+ 
+.dropdown-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: rgb(228, 209, 209);
+    margin: 5px;
+  }
+
+.dropdown {
+    margin-right: 10px;
+  }
+
+.dropdown button {
+    background-color: transparent;
+    border: none;
+  }
+
+.dropdown-menu {
+    left: auto;
+    right: 0;
+  }

@@ -3,7 +3,7 @@
 
 @section('isihalamanawal')
 
-<div class="container mt-5 bg-light">
+<div class="container mt-5" id="content-container" style="background-color: #f8f9fa;">
     <a href="{{ route('novel.show', ['novelId' => $novel->id]) }}" class="btn btn-secondary mt-2" style="text-decoration: none;">
         Kembali
     </a>
@@ -12,15 +12,47 @@
         <a href="{{ route('novel.pageEdit', ['chapterId' => $page->chapter_id, 'pageNumber' => $page->page_number]) }}" class="btn btn-primary btn-sm mb-2 mx-3 mt-2">Ubah Halaman {{ $page->page_number }}</a>
     </div>
 
-    <h1 class="text-center">{{ $novel->title }}</h1>
-    <h2 class="text-center">Bab {{ $chapter->chapter_number }}</h2>
+    <h1 id="novel-title" class="text-center">{{ $novel->title }}</h1>
+    <h2 id="chapter-title" class="text-center">Bab {{ $chapter->chapter_number }}</h2>
 
     <div class="d-flex justify-content-center align-items-center" style="min-height: 400px;">
         <div id="bookmarked-content" contentEditable="false" class="mb-2 readonly">
             {!! $page->content !!}
         </div>
     </div>
-    <h4 class="text-center">Halaman {!! $page->page_number !!}</h4>
+
+    <div class="dropdown-container">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="logo-a">A</span>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="p-3">
+                    <label for="fontSlider">Ukuran Font</label>
+                    <input class="ms-5" type="range" id="fontSlider" min="10" max="30" step="1" value="16">
+                </div>
+                <div class="p-3">
+                    <label for="lineSpacingSlider">Jarak Antara Baris</label>
+                    <input type="range" id="lineSpacingSlider" min="1" max="3" step="0.1" value="2.5">
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown" style="margin-left: 15px;">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="backgroundColorDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a style="color: black;">Ganti Warna Latar</a>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="backgroundColorDropdown">
+                <button class="dropdown-item" style="background-color: #ffffff;" onclick="changeBackgroundColor('#ffffff')">Putih</button>
+                <button class="dropdown-item" style="background-color: #7FFFD4;" onclick="changeBackgroundColor('#7FFFD4')">Aqua</button>
+                <button class="dropdown-item" style="background-color: #FA8072" onclick="changeBackgroundColor('#FA8072')">Salmon</button>
+                <button class="dropdown-item" style="background-color: grey;" onclick="changeBackgroundColor('grey')">Abu - Abu</button>
+                <button class="dropdown-item" style="background-color: black;" onclick="changeBackgroundColor('black')">Hitam</button>
+            </div>
+        </div>
+    </div>
+
+    <h4 id="chapter-page" class="text-center">Halaman {!! $page->page_number !!}</h4>
     <button id="bookmark-button" class="btn btn-warning" style="display: none;">Bookmark</button>
     <!-- <button id="remove-bookmarks" class="btn btn-danger">Hapus Bookmark</button> -->
 
@@ -45,6 +77,59 @@
 </div>
 </body>
 <script>
+    // Ubah warna
+    function changeBackgroundColor(color) {
+        const contentContainer = document.getElementById('content-container');
+        const novelTitleElement = document.getElementById('novel-title');
+        const chapterTitleElement = document.getElementById('chapter-title');
+        const chapterPageElement = document.getElementById('chapter-page');
+        const contentElement = document.getElementById('bookmarked-content');
+
+        // Mengatur warna latar
+        contentContainer.style.backgroundColor = color;
+
+        // Mengatur warna teks berdasarkan warna latar
+        const isLight = isLightColor(color);
+        novelTitleElement.style.color = isLight ? 'black' : 'white';
+        chapterTitleElement.style.color = isLight ? 'black' : 'white';
+        chapterPageElement.style.color = isLight ? 'black' : 'white';
+        contentElement.style.color = isLight ? 'black' : 'white';
+    }
+
+    // Fungsi untuk mengecek apakah suatu warna termasuk warna terang atau gelap
+    function isLightColor(color) {
+
+        color = color.replace(/^#/, '');
+
+        // Memisahkan nilai RGB
+        const bigint = parseInt(color, 16);
+        const r = (bigint >> 16) & 255;
+        const g = (bigint >> 8) & 255;
+        const b = bigint & 255;
+
+        // Hitung kecerahan
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+
+        // Jika kecerahan kurang dari 128, itu dianggap warna gelap
+        return brightness >= 128;
+    }
+
+    const fontSlider = document.getElementById('fontSlider');
+    const lineSpacingSlider = document.getElementById('lineSpacingSlider');
+    const contentElement = document.getElementById('bookmarked-content');
+
+    // Ukuran teks
+    fontSlider.addEventListener('input', function() {
+        const fontSize = this.value + 'px';
+        contentElement.style.fontSize = fontSize;
+    });
+
+    // Spasi baris
+    lineSpacingSlider.addEventListener('input', function() {
+        const lineSpacing = this.value;
+        contentElement.style.lineHeight = lineSpacing;
+    });
+
     const bookmarkedContent = document.getElementById('bookmarked-content');
     const bookmarkButton = document.getElementById('bookmark-button');
     const pageId = '{{ $page->id }}';
@@ -84,7 +169,7 @@
             // Temukan dan tandai setiap kemunculan teks bookmark
             const bookmarkedTextEscaped = bookmarkedText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'); // Escape karakter khusus
             const re = new RegExp(bookmarkedTextEscaped, 'g');
-            const replacedContent = content.replace(re, `<span style="background-color: yellow;">${bookmarkedText}</span>`);
+            const replacedContent = content.replace(re, `<span style="background-color: #EE7214;">${bookmarkedText}</span>`);
 
             // Update konten dengan kalimat yang sudah ditandai
             bookmarkedContent.innerHTML = replacedContent;
