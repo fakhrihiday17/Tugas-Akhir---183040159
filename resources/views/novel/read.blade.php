@@ -3,7 +3,7 @@
 
 @section('isihalamanawal')
 
-<div class="container mt-5" id="content-container" style="background-color: #f8f9fa;">
+<div class="container mt-5" id="content-container" style="background-color: #f8f9fa; width:61%;">
     <a href="{{ route('novel.show', ['novelId' => $novel->id]) }}" class="btn btn-secondary mt-2" style="text-decoration: none;">
         Kembali
     </a>
@@ -11,6 +11,7 @@
         <a href="{{ route('novel.chapterEdit', ['novelId' => $chapter->novel_id, 'chapterNumber' => $chapter->chapter_number]) }}" class="btn btn-primary btn-sm mb-2 mt-2">Ubah Judul Bab</a>
         <a href="{{ route('novel.pageEdit', ['chapterId' => $page->chapter_id, 'pageNumber' => $page->page_number]) }}" class="btn btn-primary btn-sm mb-2 mx-3 mt-2">Ubah Halaman {{ $page->page_number }}</a>
     </div>
+
 
     <h1 id="novel-title" class="text-center">{{ $novel->title }}</h1>
     <h2 id="chapter-title" class="text-center">Bab {{ $chapter->chapter_number }}</h2>
@@ -38,9 +39,9 @@
             </div>
         </div>
 
-        <div class="dropdown" style="margin-left: 15px;">
+        <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="backgroundColorDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <a style="color: black;">Ganti Warna Latar</a>
+                <a style="color: black;">Warna Latar</a>
             </button>
             <div class="dropdown-menu" aria-labelledby="backgroundColorDropdown">
                 <button class="dropdown-item" style="background-color: #ffffff;" onclick="changeBackgroundColor('#ffffff')">Putih</button>
@@ -62,10 +63,10 @@
                 @if ($previousPage)
                 <a href="{{ route('novel.read', ['novelId' => $novel->id, 'chapterNumber' => $chapter->chapter_number, 'pageNumber' => $previousPage->page_number]) }}" class="btn btn-primary mb-2">Previous Page</a>
                 @elseif ($previousChapter && $lastPageOfPreviousChapter)
-                <a href="{{ route('novel.read', ['novelId' => $novel->id, 'chapterNumber' => $previousChapter->chapter_number, 'pageNumber' => $lastPageOfPreviousChapter->page_number]) }}" class="btn btn-primary">Previous Chapter</a>
+                <a href="{{ route('novel.read', ['novelId' => $novel->id, 'chapterNumber' => $previousChapter->chapter_number, 'pageNumber' => $lastPageOfPreviousChapter->page_number]) }}" class="btn btn-primary mb-2">Previous Chapter</a>
                 @endif
             </div>
-            <div class="col-md-6 text-md-end">
+            <div class="col-md-6 text-md-end justify-content-end">
                 @if (!$isLastPage)
                 <a href="{{ route('novel.read', ['novelId' => $novel->id, 'chapterNumber' => $chapter->chapter_number, 'pageNumber' => $nextPage->page_number]) }}" class="btn btn-primary mb-3">Next Page</a>
                 @elseif ($nextChapter)
@@ -74,6 +75,7 @@
             </div>
         </div>
     </div>
+
 </div>
 </body>
 <script>

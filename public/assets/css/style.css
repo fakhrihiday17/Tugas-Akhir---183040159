@@ -3,7 +3,7 @@
   }
   
   #book-carousel .carousel-inner {
-    background-color: orange; /* Ganti latar belakang menjadi kuning */
+    background-color: rgb(235, 207, 156); /* Ganti latar belakang menjadi kuning */
 }
 
 .img-square {
@@ -99,27 +99,52 @@
     color: black; /* Warna teks */
   }
  
-.dropdown-container {
+  .dropdown-container {
     position: fixed;
     bottom: 0;
     left: 0;
     display: flex;
+    flex-wrap: wrap; /* Menyusun item secara responsif */
     justify-content: space-between;
     padding: 10px;
     background-color: rgb(228, 209, 209);
     margin: 5px;
-  }
+}
 
 .dropdown {
     margin-right: 10px;
-  }
+}
 
 .dropdown button {
     background-color: transparent;
     border: none;
-  }
+    display: flex; /* Membuat isi button sejajar */
+    align-items: center; /* Menyusun vertikal tengah */
+    color: black; /* Mengatur warna teks untuk semua button */
+}
 
 .dropdown-menu {
     left: auto;
     right: 0;
-  }
+}
+
+/* Menambahkan media query untuk responsivitas */
+@media (max-width: 767px) {
+    .dropdown-container {
+        flex-direction: column; /* Menyusun item secara vertikal */
+    }
+
+    .dropdown {
+        margin-right: 0; /* Membuat margin menjadi 0 saat dalam mode mobile */
+        margin-bottom: 10px; /* Memberikan ruang antar dropdown */
+    }
+
+    .dropdown-menu {
+        position: relative; /* Menyelesaikan masalah posisi dropdown menu */
+        left: 0;
+        right: auto;
+        width: 100%; /* Menyusun dropdown menu sesuai lebar container */
+        text-align: center; /* Menyusun teks di tengah dropdown menu */
+    }
+}
+

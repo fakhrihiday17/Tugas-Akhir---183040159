@@ -41,7 +41,7 @@
                                 $lastPage = $lastPages->where('chapter_id', $chapter->id)->first();
                                 @endphp
 
-                                @if ($lastPage)
+                               @if ($lastPage)
                                 <li>{{ $lastPage->page_number }} halaman</li>
                                 @else
                                 <li>No Pages Available</li>
@@ -58,9 +58,9 @@
                         <a href="{{ route('home') }}" class="btn btn-secondary btn-lg">Kembali</a>
                         <a href="{{ route('novel.read', ['novelId' => $novel->id, 'chapterNumber' => 1, 'pageNumber' => 1])}}" class="btn btn-primary btn-lg">Baca</a>
                         @if ($novel->status_favorit == 0)
-                        <a href="{{ route('novel.addToFavorites', ['novelId' => $novel->id]) }}" class="btn btn-warning btn-lg">Tambah ke Favorit</a> @endif
+                        <a href="{{ route('novel.addToFavorites', ['novelId' => $novel->id]) }}" class="btn btn-warning btn-lg mt-2">Tambah ke Favorit</a> @endif
                         @if ($novel->status_favorit == 1)
-                        <a href="{{ route('novel.removeFromFavorites', ['novelId' => $novel->id]) }}" class="btn btn-danger btn-lg">Hapus dari Favorit</a>
+                        <a href="{{ route('novel.removeFromFavorites', ['novelId' => $novel->id]) }}" class="btn btn-danger btn-lg mt-2">Hapus dari Favorit</a>
                         @endif
                     </div>
                 </div>

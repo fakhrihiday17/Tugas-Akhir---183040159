@@ -26,6 +26,13 @@ class Novel extends Model
     {
         return $this->hasMany(Chapter::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class)
+            ->withPivot('status_favorit')
+            ->withTimestamps();
+    }
 }
 
 // class Chapter extends Model

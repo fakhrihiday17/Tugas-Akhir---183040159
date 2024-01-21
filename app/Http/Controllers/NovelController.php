@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-//panggil model NovelModel
 use App\Models\Novel;
 use App\Models\Chapter;
 use App\Models\Page;
